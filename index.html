@@ -1,0 +1,940 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>MixRight Sports Fuel | From Tuesday to race day</title>
+<meta name="description" content="Sports fuel ingredients in bulk, and a coach that works out your exact mix. By Portage Nutrition, Vancouver, BC. Get early access.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,700..800&family=Archivo:wdth,wght@62..125,400..700&family=Gloock&display=swap">
+<style>
+/* MixRight waitlist page: design mock-up v4 (2026-10-26). An experiment: v3 (the Postevand direction, F37)
+   with a few spins after Teenage Engineering (see the v4 block under "section names"). Otherwise the same as v3:
+   white page, bone panels, graphite hairlines, square corners, one sans-serif, no gradients.
+   Ink and bone are the brand's graphite #161A1C and bone #EFEFEA (F17), not Postevand's #000 / #F0F1EF.
+   The product is the only colour. Same content and logic as v2. Not production code. */
+
+:root{
+  --ink:#161A1C; --paper:#FFFFFF; --bone:#EFEFEA; --graphite:#333333; --ash:#D7D7D7;
+  --key-off:#D6D5CE;
+  /* product colours: only on the product (the powder, the mix it makes) and the hero's orange field */
+  --malto:#FF7132; --malto-deep:#D9531A;
+  --fructose:#A496E0; --fructose-deep:#5E4FB8;
+  --citrate:#2A9DB8; --citrate-deep:#016B82;
+  --malic:#9DB04A; --malic-deep:#3A4920;
+
+  --sans:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+
+  --t-display:clamp(44px,5.56vw,80px);
+  --t-heading:clamp(32px,3.06vw,44px);
+  --t-sub:clamp(24px,2.22vw,32px);
+  --t-name:clamp(36px,3.89vw,56px); --t-step:clamp(24px,2.36vw,34px);
+  --t-lead:clamp(20px,1.81vw,26px);
+  --nav:44px; --pad:20px; --air:80px; --air-head:128px;
+}
+@media (max-width:899px){ :root{--air:56px; --air-head:64px} }
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:var(--nav)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.4;letter-spacing:-.01em;-webkit-font-smoothing:antialiased}
+h1,h2,h3,p,ol,ul,figure{margin:0}
+h1,h2,h3{text-wrap:balance}
+p{text-wrap:pretty}
+ul,ol{padding:0;list-style:none}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer;letter-spacing:inherit}
+img,svg{display:block}
+:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.skip{position:absolute;left:-9999px;top:8px}
+.skip:focus{left:16px;z-index:99;background:var(--paper);padding:10px 16px;border:1px solid var(--ink)}
+.vh{position:absolute;left:-9999px}
+
+/* type: one family, regular for display, bold only for small labels */
+.cap{font-size:12px;line-height:1.25;text-transform:uppercase;letter-spacing:.01em}
+.cap-s{font-size:10px;line-height:1.2;text-transform:uppercase;letter-spacing:.01em}
+.b{font-weight:700}
+.t-display{font-weight:400;font-size:var(--t-display);line-height:1;letter-spacing:-.01em}
+.t-heading{font-weight:400;font-size:var(--t-heading);line-height:1;letter-spacing:-.01em}
+.t-sub{font-weight:400;font-size:var(--t-sub);line-height:1.05;letter-spacing:-.01em}
+.soft{color:var(--graphite)}
+.small{font-size:12px;line-height:1.4;letter-spacing:0}
+.tnum{font-variant-numeric:tabular-nums}
+sup{font-size:.62em;line-height:0;vertical-align:super;letter-spacing:0}
+sup::before{content:"["}
+sup::after{content:"]"}
+.ul{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+
+/* wordmark: the logo keeps its own drawing */
+.wm{display:inline-flex;align-items:baseline;line-height:1;white-space:nowrap;text-transform:uppercase}
+.wm-a{font-family:"Gloock",Georgia,serif;font-weight:400;letter-spacing:-.01em;font-size-adjust:cap-height .72;display:inline-block;transform:skewX(-10deg);transform-origin:0 100%;margin-right:.04em}
+.wm-b{font-family:"Anybody",system-ui,sans-serif;font-weight:800;font-stretch:100%;letter-spacing:-.03em;font-size-adjust:cap-height .72}
+
+/* the hairline grid: one continuous sheet. Sections sit edge to edge, so every vertical line
+   runs from one horizontal rule to the next; the air lives inside the cells, never between them. */
+.row{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));border-top:1px solid var(--ink)}
+.cell{padding:var(--pad) var(--pad) var(--air);border-left:1px solid var(--ink);min-width:0}
+.row > .cell:first-child{border-left:0}
+.c2{grid-column:span 2}.c3{grid-column:span 3}.c4{grid-column:span 4}.c5{grid-column:span 5}.c6{grid-column:span 6}.c7{grid-column:span 7}.c8{grid-column:span 8}.c12{grid-column:span 12}
+.bone{background:var(--bone)}
+.head > .cell{padding-bottom:var(--air-head)}
+@media (max-width:899px){
+  .row{grid-template-columns:minmax(0,1fr)}
+  .row > .cell{grid-column:auto;border-left:0;border-top:1px solid var(--ink)}
+  .row > .cell:first-child{border-top:0}
+  .row > .sec-label,.head > .sec-label{padding-bottom:12px}
+}
+
+/* buttons: black rectangles, plain text links */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:0 67px;border:0;border-radius:0;background:var(--ink);color:var(--paper);font-size:16px;line-height:1;text-decoration:none;white-space:nowrap}
+.btn.full{width:100%;padding:0 20px}
+.seg{display:flex;flex-wrap:wrap}
+.seg button{height:48px;padding:0 24px;margin:0 -1px -1px 0;border:1px solid var(--ink);border-radius:0;background:var(--paper);font-size:16px;line-height:1}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.seg button[disabled]{color:var(--ash);border-color:var(--ink);cursor:not-allowed}
+.seg.sm button{height:36px;padding:0 14px;font-size:12px;text-transform:uppercase;letter-spacing:.01em}
+
+/* navigation */
+.nav{position:sticky;top:0;z-index:50;display:grid;grid-template-columns:33.333% minmax(0,1fr) 140px 170px;height:var(--nav);background:var(--paper);border-bottom:1px solid var(--ink)}
+.nav > *{display:flex;align-items:center;padding:0 var(--pad);border-left:1px solid var(--ink);text-decoration:none;min-width:0}
+.nav > :first-child{border-left:0}
+.nav .wm{font-size:17px}
+.nav-links{gap:40px}
+.nav-links a{text-decoration:none}
+.nav a:hover{text-decoration:underline;text-underline-offset:3px}
+.nav .right{justify-content:center}
+.nav .menu{display:none}
+@media (max-width:899px){
+  .nav{grid-template-columns:minmax(0,1fr) auto auto}
+  .nav-links,.nav .lang{display:none}
+  .nav .menu{display:flex}
+  .nav .right{padding:0 16px}
+}
+
+/* hero: one pinned stage on a white page, read as a single thought. "From Tuesday to race day." holds,
+   the MixRight wordmark (the only orange) rises from below and closes the sentence, then the line and the
+   button come in underneath. Scroll-driven on desktop (see heroUpdate); a plain stack on phones, with
+   reduced motion, or without script. */
+.hero{position:relative}
+.hero-stage{position:relative;display:grid;place-items:center;overflow:hidden;background:var(--paper);padding:64px var(--pad) 72px}
+.hero-stack{display:grid;justify-items:center;width:100%;text-align:center}
+.hero h1{font-weight:400;font-size:var(--t-display);line-height:1;letter-spacing:-.01em;text-align:center}
+.hero-line{margin-top:40px;max-width:22em;font-size:var(--t-lead);line-height:1.2;letter-spacing:-.015em;text-wrap:balance}
+.hero .btn{margin-top:32px}
+.hero-anim{height:300svh}
+.hero-anim .hero-stage{position:sticky;top:var(--nav);height:calc(100svh - var(--nav));padding:0 var(--pad)}
+/* the outline button: white, a graphite hairline, the label left and an arrow right; it fills on hover */
+.btn-line{gap:56px;justify-content:space-between;padding:0 24px 0 28px;background:var(--paper);color:var(--ink);border:1px solid var(--ink);transition:background-color 160ms ease-out,color 160ms ease-out}
+.btn-line .arr{font-size:20px;line-height:1;transition:transform 200ms ease-out}
+.btn-line:hover{background:var(--ink);color:var(--paper)}
+.btn-line:hover .arr{transform:translateX(4px)}
+/* the wordmark is sized by script to fill the width exactly, margin to margin */
+.giant-wm{margin:.04em 0 0;width:max-content;color:var(--malto);font-size:19vw;line-height:1;white-space:nowrap;pointer-events:none}
+@media (max-width:899px){
+  .giant-wm{font-size:18vw}
+  .hero h1{font-size:clamp(40px,11vw,64px)}
+  .hero .btn{width:100%}
+}
+@media (prefers-reduced-motion:reduce){ .btn-line,.btn-line .arr{transition:none} }
+
+/* v4 spins, after Teenage Engineering. Three devices, used the same way everywhere, on v3's plain cell grid:
+   1. a section name with a bracketed index, as TE sets "News[05]";
+   2. the intro: the statement and the lines under it, all left-aligned at the column's edge;
+   3. the name tag: an outlined label stacked on top of a heading, after TE's "OP–1 [field]". */
+.te-name{font-weight:400;font-size:var(--t-name);line-height:1;letter-spacing:-.02em}
+.te-name sup{font-size:max(15px,.42em);vertical-align:top;position:relative;top:.02em;margin-left:.08em;letter-spacing:0}
+.step{font-size:var(--t-step);line-height:1.14;letter-spacing:-.02em}
+.step h2,.step p{font:inherit;letter-spacing:inherit}
+.step-a{max-width:19em}
+.step-b{max-width:22em}
+.step sup{font-size:.5em}
+.step .more{display:inline-block;margin-top:28px;font-size:16px;letter-spacing:-.01em}
+/* 01 reads as an argument in three beats, all on the column's edge, split by space alone:
+   the claim, what a drink mix does, the conclusion. One idea per line; the breaks are written in. */
+.argue{line-height:1.16}
+.argue .ln{display:block;text-wrap:balance}
+.argue .step-a,.argue .step-b{max-width:none}
+.argue .step-a{font-size:var(--t-heading);line-height:1.02}
+.argue .step-b{margin-top:.75em;margin-left:0}
+.argue .step-c{margin-top:.75em}
+.pick-note{max-width:44ch;margin-top:-6px}
+@media (max-width:899px){ .argue .step-b{margin-left:0} }
+.tag-o{display:inline-block;justify-self:start;padding:6px 11px 5px;border:1px solid currentColor;border-radius:3px;font-size:15px;line-height:1.2;letter-spacing:0;text-transform:lowercase;white-space:nowrap}
+.tag-o + h1,.tag-o + h3,.tag-o + .te-name{margin-top:14px}
+.ing .tag-o + h3{margin-top:-4px}
+@media (max-width:899px){
+  .row.head > .cell:first-child{padding-bottom:4px}
+  .row.head > .cell + .cell{border-top:0}
+}
+@media (max-width:599px){ :root{--t-step:22px} .big-num .unit{font-size:16px} }
+
+/* 01 the idea */
+.picker{display:grid;gap:20px;justify-items:start}
+.answer{display:grid;gap:12px;margin-top:8px}
+.answer b{font-weight:400;font-size:var(--t-heading);line-height:1;white-space:nowrap}
+/* the chart's rules run wall to wall inside its cell */
+.guide{padding-left:0;padding-right:0}
+.guide-head,.g-row,.guide-note{padding-left:var(--pad);padding-right:var(--pad)}
+.guide-head{display:flex;justify-content:space-between;gap:12px;padding-bottom:16px;border-bottom:1px solid var(--ink)}
+.g-row{display:grid;grid-template-columns:120px minmax(0,1fr) 110px;align-items:center;gap:20px;padding-top:18px;padding-bottom:18px;border-bottom:1px solid var(--ash);transition:opacity 300ms ease-out}
+.g-bar{height:12px;background:var(--ash)}
+.g-bar i{display:block;height:100%;background:var(--ink);width:var(--w)}
+.g-row b{font-weight:400;font-size:var(--t-sub);line-height:1;text-align:right;white-space:nowrap}
+.guide.has-pick .g-row{opacity:.3}
+.guide.has-pick .g-row.is-on{opacity:1}
+.g-row .you{display:none;margin-left:8px;padding:3px 6px;background:var(--ink);color:var(--paper)}
+.g-row.is-on .you{display:inline-block}
+.guide-note{margin-top:16px}
+.guide-head span:last-child{white-space:nowrap}
+@media (max-width:599px){ .g-row{grid-template-columns:96px minmax(0,1fr) 80px;gap:12px} .seg button{padding:0 18px} }
+
+/* 02 the parts: the bottle fills as you scroll */
+.walk .panel-cell{padding:0}
+/* the panel is three stacked sub-cells; their rules meet the cell walls */
+.panel{position:sticky;top:var(--nav);display:grid}
+.pblock{padding:var(--pad)}
+.pblock + .pblock{border-top:1px solid var(--ink)}
+.pblock.mixer,.pblock.mixer + .pblock{border-top:0}
+.pblock.setup{display:grid;gap:18px}
+.controls{display:grid;gap:10px}
+.ctl{display:grid;grid-template-columns:72px minmax(0,1fr);align-items:center;gap:12px}
+.slider{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:14px}
+.slider output{min-width:84px;padding:10px 10px;background:var(--ink);color:var(--paper);text-align:center}
+.range{position:relative;height:40px;display:grid;align-items:center}
+.range .band{position:absolute;top:50%;height:14px;transform:translateY(-50%);left:var(--b0);width:var(--bw);background:var(--ash)}
+.range .band-lbl{position:absolute;top:-4px;left:var(--b0);white-space:nowrap}
+.range input{position:relative;width:100%;margin:0;background:transparent;-webkit-appearance:none;appearance:none;height:40px}
+.range input::-webkit-slider-runnable-track{height:1px;background:var(--ink)}
+.range input::-moz-range-track{height:1px;background:var(--ink)}
+.range input::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:0;background:var(--ink);margin-top:-9px;border:0}
+.range input::-moz-range-thumb{width:18px;height:18px;border-radius:0;background:var(--ink);border:0}
+.ratio-note{min-height:2.8em;max-width:52ch}
+.mixer{display:grid;grid-template-columns:220px minmax(0,1fr);gap:28px;align-items:end}
+.bottle-box{width:200px;height:360px;position:relative}
+.bottle-wrap{position:absolute;left:0;top:0;width:200px;height:360px;transform:none}
+.bottle-fill{position:absolute;inset:0;clip-path:path("M38 92 Q38 70 60 66 L140 66 Q162 70 162 92 L162 180 Q150 200 150 220 Q150 240 162 260 L162 330 Q162 350 142 350 L58 350 Q38 350 38 330 L38 260 Q50 240 50 220 Q50 200 38 180 Z");background:var(--paper)}
+.stack{position:absolute;left:0;right:0;bottom:10px;display:flex;flex-direction:column-reverse}
+.stack i{display:block;height:0;transition:height 600ms cubic-bezier(.2,.7,.2,1)}
+.bottle-wrap svg{position:absolute;inset:0;width:200px;height:360px}
+.recipe li{display:grid;grid-template-columns:14px minmax(0,1fr) auto;align-items:center;gap:2px 12px;padding:10px 0;border-top:1px solid var(--ash);opacity:.3;transition:opacity 400ms ease-out}
+.recipe li:first-child{border-top:0}
+.recipe li.on{opacity:1}
+.recipe svg{width:14px;height:14px}
+.recipe .amt{font-size:16px}
+.recipe .why{grid-column:2 / -1;display:none}
+.recipe li.zero .why{display:block}
+.recipe li.zero .amt{color:var(--graphite)}
+.totals{display:flex;gap:40px;padding-bottom:28px}
+.totals > div{opacity:.22;transition:opacity 500ms ease-out}
+.walk[data-step="4"] .totals > div,.walk[data-step="5"] .totals > div,.no-js .totals > div{opacity:1}
+.totals b{display:block;font-weight:400;font-size:var(--t-heading);line-height:1;white-space:nowrap}
+.totals span{display:block;margin-top:8px}
+.rows-cell{padding:0}
+.ing{min-height:64vh;display:grid;align-content:center;gap:16px;padding:48px var(--pad);border-top:1px solid var(--ink)}
+.ing:first-child{border-top:0;min-height:52vh;align-content:start;padding-top:var(--pad)}
+.ing-top{display:flex;justify-content:space-between;align-items:flex-start;font-weight:400;font-size:var(--t-step);line-height:1;letter-spacing:0;font-variant-numeric:tabular-nums}
+.ing-top > span::before{content:"["}
+.ing-top > span::after{content:"]"}
+.ing-top svg{width:56px;height:56px}
+.ing p{max-width:40ch}
+.together{min-height:60vh;display:grid;align-content:center;gap:20px;padding:48px var(--pad);border-top:1px solid var(--ink)}
+.steps{display:flex;gap:0;flex-wrap:wrap}
+.steps span{padding:12px 20px;border:1px solid var(--ink);margin:0 -1px -1px 0}
+/* the price index, after Olway's chart: a row per product, a hairline bar to scale, the price at the end.
+   MixRight on top in graphite with no number until launch; the branded average under it opens to every brand. */
+.value .cell{min-height:440px;display:grid;align-content:space-between;gap:40px}
+.value .tag{justify-self:start}
+.pidx-key{display:grid;align-content:start;gap:14px}
+.pidx-key .small{max-width:46ch}
+.pidx{padding:0 0 var(--air)}
+.pi{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr) 88px;align-items:center;gap:24px;width:100%;min-height:76px;padding:0 var(--pad);font-size:20px;line-height:1.15;letter-spacing:-.015em;text-align:left}
+.pi-name{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;min-width:0}
+.pi-prod{flex-basis:100%;font-size:12px;letter-spacing:0;color:var(--graphite)}
+.pi-avg .pi-prod{padding-left:27px}
+.pi-bar{position:relative;height:3px;background:var(--ash)}
+.pi-bar i{position:absolute;left:0;top:0;bottom:0;background:var(--ink);transform-origin:0 50%}
+.pi-val{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pi-us{background:var(--ink);color:var(--paper)}
+/* MixRight has no price yet, so no bar to scale: a hatched band that stops short of every brand and fades
+   out instead of ending on a number. It says "less" without saying how much. */
+.pi-us .pi-bar{height:12px;background:linear-gradient(rgba(255,255,255,.22),rgba(255,255,255,.22)) 0 50%/100% 3px no-repeat}
+.pi-us .pi-hatch{width:46%;background:repeating-linear-gradient(-45deg,var(--paper) 0 1.5px,transparent 1.5px 6px);-webkit-mask-image:linear-gradient(90deg,#000 40%,transparent);mask-image:linear-gradient(90deg,#000 40%,transparent)}
+.js .pi-us .pi-hatch{transform:none;clip-path:inset(0 100% 0 0);transition:clip-path 1100ms cubic-bezier(.2,.7,.2,1)}
+.js .pi-us.drawn .pi-hatch{clip-path:inset(0 0 0 0)}
+.pi-avg{border:0;background:none;cursor:pointer}
+.pi-avg:hover{background:var(--bone)}
+.pi-avg .pi-name{padding-left:0}
+.chev{width:9px;height:9px;margin:0 6px 0 2px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-3px) rotate(45deg);transition:transform 200ms ease-out}
+.pi-avg[aria-expanded="false"] .chev{transform:translateY(0) rotate(-45deg)}
+.pi-list .pi-name{padding-left:27px}
+.js .pi-bar i{transform:scaleX(0);transition:transform 900ms cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i,0) * 70ms)}
+.js .drawn .pi-bar i,.js .pi-avg.drawn .pi-bar i{transform:scaleX(1)}
+@media (max-width:599px){
+  .pi{grid-template-columns:minmax(0,1fr) auto;gap:10px 16px;min-height:0;padding:16px var(--pad);font-size:18px}
+  .pi-bar{grid-column:1 / -1;grid-row:2}
+  .pi-list .pi-name{padding-left:23px}
+  .pi-list .pi-bar,.pi-avg .pi-bar{margin-left:23px}
+}
+@media (max-width:899px){
+  .walk{display:flex;flex-direction:column-reverse}
+  .panel{position:static}
+  .ing,.ing:first-child,.together{min-height:0;padding:40px var(--pad)}
+  .ing:first-child{border-top:0}
+  .rows-cell{border-top:0 !important}
+  .value .cell{min-height:0}
+}
+@media (max-width:599px){ .ing-top svg{width:44px;height:44px} .mixer{grid-template-columns:160px minmax(0,1fr);gap:16px} .bottle-box{width:160px;height:288px} .bottle-wrap{transform:scale(.8);transform-origin:0 0} .ctl{grid-template-columns:minmax(0,1fr)} }
+
+/* 03 the coach */
+/* 03 the coach: three training days, one picture each. Each panel sticks under the nav and the next slides up
+   over it. Plain CSS, no script. The photos are the user's (2026-10-26), in their numbered order. */
+.moods{position:relative;border-top:1px solid var(--ink)}
+.mood{position:sticky;top:var(--nav);height:72vh;min-height:480px;max-height:820px;overflow:hidden;background:#1C2328;color:var(--paper)}
+.mood + .mood{border-top:1px solid var(--ink)}
+.mood-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.mood::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(22,26,28,.45) 0%,rgba(22,26,28,0) 30%,rgba(22,26,28,0) 70%,rgba(22,26,28,.4) 100%)}
+.stamp{position:absolute;left:var(--pad);top:var(--pad);right:var(--pad);z-index:2;display:flex;flex-wrap:wrap;align-items:center;gap:4px 40px}
+.stamp .wx{display:inline-flex;align-items:center;gap:10px}
+.stamp .wx svg{width:1em;height:1em;flex:none;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:square}
+@media (max-width:599px){ .stamp{display:grid;grid-template-columns:auto auto;justify-content:start;gap:6px 32px} }
+.step-cell h3{margin-top:56px}
+.step-cell p{margin-top:16px;max-width:34ch}
+@media (max-width:899px){ .step-cell h3{margin-top:24px} }
+
+/* the number */
+/* sized by script to run margin to margin */
+.big-num{padding:12px var(--pad) 14px;border-top:1px solid var(--ink);overflow:hidden}
+.big-num p{font-weight:400;font-size:21.6vw;line-height:1.06;letter-spacing:-.01em;white-space:nowrap}
+.big-num [data-fit]{display:inline-block}
+.big-num .unit{font-size:.13em;vertical-align:text-top;position:relative;top:1.05em;margin-left:.12em;letter-spacing:0;line-height:1}
+.num-notes .cell{padding-bottom:40px}
+.num-notes .cell p:last-child{margin-top:12px;max-width:34ch}
+@media (max-width:599px){ .big-num p{white-space:normal;font-size:25vw;line-height:1} .big-num [data-fit]{display:inline} }
+
+/* 04 clubs */
+
+/* banana maths: a cheeky aside just before the sign-up. The joke is on the logistics (ten bananas, three
+   pockets), never on the rider. The banana icon is loading.io's (CC BY, credited in the footer), in its own colours. */
+.bn .cell.c8{padding-bottom:var(--air)}
+.bn-big{font-weight:400;font-size:clamp(64px,8.9vw,128px);line-height:.95;letter-spacing:-.03em}
+.bananas{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 14px;margin-top:40px}
+.bananas svg{width:52px;height:52px;fill:currentColor}
+.pockets{display:flex;gap:8px;margin-right:4px}
+.pocket{display:flex;align-items:flex-end;height:30px;padding:0 6px 4px;border:1px solid var(--ink);border-top:0}
+.pocket svg{margin-top:-26px}
+.bn-note{margin-top:12px}
+.bn-line{margin-top:28px;max-width:30em;font-size:var(--t-lead);line-height:1.2;letter-spacing:-.015em}
+.bn-line sup{font-size:.5em}
+.bn-rows{margin:40px calc(-1*var(--pad)) 0}
+.bn-row{display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:8px 24px;padding:16px var(--pad);border-top:1px solid var(--ash);font-size:18px;line-height:1.3}
+.bn-end{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;margin:0 calc(-1*var(--pad));padding:28px var(--pad) 0;border-top:1px solid var(--ink)}
+.bn-end p{font-size:var(--t-lead);line-height:1.2;letter-spacing:-.015em}
+@media (max-width:599px){ .bananas svg{width:38px;height:38px} .pocket{height:24px} .pocket svg{margin-top:-14px} .bn-row{grid-template-columns:minmax(0,1fr)} .bn-end .btn{width:100%} }
+
+/* 05 early access: no card and no fill. The form sits straight on the grid in the page's own language:
+   a square email field with the button joined to it, then, in place, five optional questions whose
+   hairlines run wall to wall like the FAQ's. */
+.join-pane{margin-top:56px;max-width:680px;font-size:16px;line-height:1.4;letter-spacing:-.01em}
+.join-pane[hidden]{display:none}
+.email-row{display:grid;grid-template-columns:minmax(0,1fr) auto}
+.email-row input[type="email"]{width:100%;min-width:0;height:56px;padding:0 20px;border:1px solid var(--ink);border-radius:0;background:var(--paper);font:inherit;font-size:16px;color:var(--ink)}
+.email-row input[type="email"]::placeholder{color:var(--graphite)}
+.email-row .btn{padding:0 40px}
+.join-fine{display:grid;gap:14px;margin-top:20px}
+.survey{max-width:none}
+.survey-head{display:grid;gap:12px;max-width:44ch}
+.survey-head [tabindex],.done [tabindex]{outline:none}
+.qs{margin-top:40px}
+.q{display:grid;gap:12px;justify-items:start;margin:0 calc(-1*var(--pad));padding:24px var(--pad) 28px;border-top:1px solid var(--ink)}
+.q-t{font-size:var(--t-lead);line-height:1.15;letter-spacing:-.015em}
+.q-hint{margin-top:-6px}
+.survey-actions{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin:0 calc(-1*var(--pad));padding:24px var(--pad) 0;border-top:1px solid var(--ink)}
+.linkbtn{padding:0;border:0;background:none;font-size:16px;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.done{display:grid;gap:12px;justify-items:start}
+.done-share{display:grid;gap:16px;justify-items:start;margin-top:40px}
+.consent{display:grid;grid-template-columns:16px 1fr;gap:12px;align-items:start;margin-top:8px}
+.consent input{appearance:none;-webkit-appearance:none;width:16px;height:16px;margin:1px 0 0;border:1px solid var(--ink);border-radius:0;background:var(--paper);display:grid;place-items:center}
+.consent input:checked{background:var(--ink)}
+.consent input:checked::after{content:"";width:8px;height:4px;border-left:1.5px solid var(--paper);border-bottom:1.5px solid var(--paper);transform:rotate(-45deg) translate(1px,-1px)}
+@media (max-width:599px){ .join-pane{margin-top:40px} .email-row{grid-template-columns:minmax(0,1fr)} .email-row .btn{width:100%} .email-row input[type="email"]{border-bottom:0} }
+
+/* faq */
+/* each question is a full-width row of its cell; the dividers meet the walls */
+.faq-list{padding:0 0 var(--air)}
+.faq-list details{border-bottom:1px solid var(--ash)}
+.faq-list summary{list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding:20px var(--pad);cursor:pointer;font-size:16px}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary:hover{background:var(--bone)}
+.faq-list summary span::before{content:"+"}
+.faq-list details[open] summary span::before{content:"−"}
+.faq-list details p{padding:0 var(--pad) 20px;max-width:calc(60ch + 2 * var(--pad))}
+
+/* footer */
+.footer{border-top:1px solid var(--ink)}
+.footer .cell{padding-bottom:40px}
+.foot-col h3{font-weight:700;margin-bottom:12px}
+.foot-col li{margin-top:6px}
+.foot-col a{text-decoration:none}
+.foot-col a:hover{text-decoration:underline;text-underline-offset:3px}
+.foot-brand .wm{font-size:20px}
+.foot-brand p{margin-top:12px;max-width:34ch}
+.marquee{overflow:hidden;border-top:1px solid var(--ink);padding:18px 0 22px}
+.marquee-track{display:inline-flex;white-space:nowrap;animation:mq 48s linear infinite}
+.marquee-track span{font-weight:400;font-size:var(--t-display);line-height:1;padding-right:.6em}
+@keyframes mq{to{transform:translateX(-50%)}}
+.sources p{max-width:72ch;margin-top:4px}
+.sources p:first-child{margin-top:0}
+.footer .legal .cell{padding-bottom:var(--pad)}
+@media (max-width:899px){
+  .footer .row{grid-template-columns:1fr 1fr}
+  .footer .foot-brand,.footer .src{grid-column:1 / -1}
+  .footer .row > .foot-col{border-top:1px solid var(--ink);padding-bottom:24px}
+  .footer .row > .foot-col + .foot-col{border-left:1px solid var(--ink)}
+  .footer .row > .foot-col:last-child{grid-column:1 / -1;border-left:0}
+  .footer .row > .src + .src{border-top:0;padding-top:0}
+  .footer .row > .src:first-child{padding-bottom:4px}
+  .footer .legal > .cell{grid-column:1 / -1}
+  .footer .legal > .cell + .cell{border-top:0;padding-top:0}
+}
+@media (prefers-reduced-motion:reduce){
+  .marquee-track{animation:none}
+  .stack i,.recipe li,.g-row,.totals > div,.js .pi-bar i,.chev,.js .pi-us .pi-hatch{transition:none}
+  .marquee-track{display:flex;flex-wrap:wrap;white-space:normal;padding:0 var(--pad)}
+  .marquee-track span:nth-child(n+3){display:none}
+}
+
+</style>
+</head>
+<body class="no-js">
+<a class="skip" href="#main">Skip to content</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="sh-sq" viewBox="0 0 40 40"><rect x="5" y="5" width="30" height="30" style="fill:var(--s)"/></symbol>
+    <symbol id="sh-tri" viewBox="0 0 40 40"><polygon points="20,4 37,35 3,35" style="fill:var(--s)"/></symbol>
+    <symbol id="sh-circ" viewBox="0 0 40 40"><circle cx="20" cy="20" r="16" style="fill:var(--s)"/></symbol>
+    <symbol id="sh-half" viewBox="0 0 40 40"><path d="M4 28 A16 16 0 0 1 36 28 Z" style="fill:var(--s)"/></symbol>
+    <symbol id="wx-rain" viewBox="0 0 24 24"><path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"/><path d="M8 13v8M16 13v8M12 15v8"/></symbol>
+    <symbol id="wx-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></symbol>
+    <symbol id="banana" viewBox="0 0 100 100"><path d="M84.712 83.234c-.263-.216-.519-.453-.681-.752-.172-.317-.228-.682-.279-1.039a69.33 69.33 0 0 1-.189-1.433l-.004-.033c-.04-.331-.078-.671.006-.993.095-.365.335-.673.579-.961.198-.234.412-.453.622-.676-.995-.438-2.409-.912-4.519-1.232-3.541-.537-11.794-.356-14.222-1.14-2.428-.784-12.344-1.049-17.686-4.939-5.342-3.891-15.329-15.161-16.121-22.66-.792-7.499-.176-13.405-1.092-16.418-.701-2.308-.707-5.061-.31-6.922-.729-2.331-.89-4.789-.508-6.048.045-.148.104-.299.162-.45l-4.987-2.226c-1.127 3.092-4.508 7.773-5.976 9.468-1.23 1.419-2.844 3.136-3.724 5.851a12.035 12.035 0 0 0-1.958 3.562c-1.315 3.751-2.86 12.539-1.575 19.082 2.07 10.548 10.165 26.203 24.023 34.002 13.376 7.528 26.478 10.306 39.345 4.924 6.37-2.665 9.595-5.64 11.183-7.649-.739-.372-1.448-.794-2.089-1.318z" fill="#edc61a"/><path d="M33.498 12.682c.536-.728.897-1.706 1.145-2.614.362-1.324.475-2.498.475-2.498S32.376 5.503 31.3 5.039c-1.076-.464-5.567 3.369-5.567 3.369.375 1.729.883 3.573-.15 6.657-.026.077-.07.167-.099.247l4.987 2.226c.594-1.547 1.828-3.225 3.027-4.856z" fill="#8c6239"/><path d="M84.031 82.482c-.172-.317-.228-.682-.279-1.039a69.33 69.33 0 0 1-.189-1.433c-10.871 5.689-23.135 5.063-36.355.593-15.065-5.093-25.922-18.974-29.913-28.956-2.476-6.191-2.588-15.113-1.992-19.043.109-.721.282-1.364.48-1.974a12.035 12.035 0 0 0-1.958 3.562c-1.315 3.751-2.86 12.539-1.575 19.082 2.07 10.548 10.165 26.203 24.023 34.002 13.376 7.527 26.478 10.306 39.345 4.924 6.37-2.665 9.595-5.64 11.183-7.649-.74-.371-1.449-.794-2.089-1.318-.263-.214-.518-.452-.681-.751z" opacity=".2"/><path d="M86.52 78.306c-.031-.026-.063-.074-.094-.091-.361-.207-.887-.527-1.66-.867-.21.223-.424.442-.622.676-.244.288-.485.596-.579.961-.084.322-.046.662-.006.993l.004.033c.058.478.121.956.189 1.433.051.357.107.722.279 1.039.162.299.417.537.681.752.64.524 1.35.946 2.089 1.318 1.117-1.413 1.431-2.352 1.431-2.352s-.907-3.231-1.712-3.895z" fill="#8c6239"/><path d="M23.963 52.703c.356.723.751 1.428 1.19 2.109" stroke-width="3.5" stroke-miterlimit="10" fill="none" stroke="#fff" stroke-linecap="round"/><path d="M21.716 33.228s-.637 2.334-.62 5.158c.013 2.214.162 4.463.52 6.667" stroke-width="3.5" stroke-miterlimit="10" fill="none" stroke="#fff" stroke-linecap="round"/></symbol>
+    <symbol id="wx-cloud" viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></symbol>
+  </defs>
+</svg>
+
+<header class="nav cap" id="nav">
+  <a href="#top" aria-label="MixRight, home"><span class="wm"><span class="wm-a">Mix</span><span class="wm-b">Right</span></span></a>
+  <nav class="nav-links" aria-label="Main"><a href="#parts">The parts</a><a href="#coach">The coach</a><a href="#clubs">Clubs</a></nav>
+  <a class="right lang" href="#fr" lang="fr">Français</a>
+  <a class="right" href="#join">Early access</a>
+  <a class="right menu" href="#menu">Menu</a>
+</header>
+
+<main id="main">
+  <!-- Hero -->
+  <section class="hero" id="top" aria-label="MixRight Sports Fuel">
+    <div class="hero-stage">
+      <div class="hero-stack">
+        <h1>From Tuesday to race day.</h1>
+        <p class="giant-wm" data-fit="all"><span class="wm"><span class="wm-a">Mix</span><span class="wm-b">Right</span></span></p>
+        <p class="hero-line">Your body. Your ride. Your mix. Dialled in every session. Perfected for the podium.</p>
+        <a class="btn btn-line" href="#join"><span>Get early access</span><span class="arr" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 The idea -->
+  <section class="sec idea" aria-labelledby="h-idea">
+    <div class="row head">
+      <div class="cell c4"><p class="te-name">The idea<sup>01</sup></p></div>
+      <div class="cell c8 step argue">
+        <h2 class="step-a" id="h-idea"><span class="ln">Fuel your training,</span><span class="ln">not just your race.</span></h2>
+        <p class="step-b"><span class="ln">Every bottle, mixed to the ride.</span><span class="ln">Salt for hydration, carbs for power.</span></p>
+        <p class="step-c"><span class="ln">In training, most riders fall short.<sup>II</sup></span><span class="ln">Race day is built on Tuesdays.</span><span class="ln">Fuel them.</span></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="cell c6 idea-text">
+        <div class="picker">
+          <p class="t-sub" id="ride-q">What does your ride look like today?</p>
+          <p class="pick-note">How much you need depends on how long you ride. Guidance is up to 30, 60 or&nbsp;90&nbsp;g of carbs an&nbsp;hour.<sup>I</sup></p>
+          <div class="seg" role="group" aria-labelledby="ride-q">
+            <button type="button" data-ride="1-2" aria-pressed="false">1–2 h</button>
+            <button type="button" data-ride="2-3" aria-pressed="true">2–3 h</button>
+            <button type="button" data-ride="3+" aria-pressed="false">3 h +</button>
+          </div>
+          <div class="answer" aria-live="polite">
+            <b class="tnum" id="ride-answer">Up to 60 g an hour</b>
+            <a class="cap ul" href="#parts">See your bottle ↓</a>
+          </div>
+        </div>
+      </div>
+      <figure class="cell c6 bone guide has-pick" aria-labelledby="g-cap">
+        <div class="guide-head cap"><span id="g-cap">Carbohydrate guidance, by ride length</span><span>g / hour<sup>I</sup></span></div>
+        <div class="tnum">
+          <div class="g-row"><span class="cap">Under 45 min</span><div class="g-bar"><i style="--w:0%"></i></div><b>0 g</b></div>
+          <div class="g-row" data-tier="1-2"><span class="cap">1–2 h<span class="you cap-s">You</span></span><div class="g-bar"><i style="--w:33.3%"></i></div><b>≤ 30 g</b></div>
+          <div class="g-row is-on" data-tier="2-3"><span class="cap">2–3 h<span class="you cap-s">You</span></span><div class="g-bar"><i style="--w:66.6%"></i></div><b>≤ 60 g</b></div>
+          <div class="g-row" data-tier="3+"><span class="cap">Over 2.5 h<span class="you cap-s">You</span></span><div class="g-bar"><i style="--w:100%"></i></div><b>≤ 90 g</b></div>
+        </div>
+        <figcaption class="small soft guide-note">Above 60 g an hour, guidance pairs glucose with fructose.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 02 The parts -->
+  <section class="sec parts" id="parts" aria-labelledby="h-parts">
+    <div class="row head">
+      <div class="cell c4"><p class="te-name">The parts<sup>02</sup></p></div>
+      <div class="cell c8 step">
+        <h2 class="step-a" id="h-parts">Pay for the powder, not the packaging.</h2>
+        <p class="step-b">Four single ingredients. Each one does one job in your bottle.</p>
+      </div>
+    </div>
+
+    <div class="row walk" id="walk" data-step="0">
+      <div class="cell c6 bone panel-cell">
+        <aside class="panel" aria-label="Your bottle">
+          <div class="pblock setup">
+          <p class="cap b">Tailor your bottle · 750 ml · one an hour</p>
+          <div class="controls">
+            <div class="ctl"><span class="cap soft">Ride</span><div class="seg sm" role="group" aria-label="Ride length"><button type="button" data-ride="1-2" aria-pressed="false">1–2 h</button><button type="button" data-ride="2-3" aria-pressed="true">2–3 h</button><button type="button" data-ride="3+" aria-pressed="false">3 h +</button></div></div>
+            <div class="ctl"><span class="cap soft">Ratio</span><div class="seg sm" role="group" aria-label="Glucose to fructose ratio"><button type="button" data-ratio="0" aria-pressed="false">Malto only</button><button type="button" data-ratio="0.5" aria-pressed="true">2:1</button><button type="button" data-ratio="0.8" aria-pressed="false">1:0.8</button><button type="button" data-ratio="1" aria-pressed="false">1:1</button></div></div>
+            <div class="ctl"><label class="cap soft" for="na">Sodium</label><div class="slider"><div class="range" style="--b0:21.875%;--bw:18.75%"><span class="band" aria-hidden="true"></span><span class="band-lbl cap-s" aria-hidden="true">Guidance</span><input type="range" id="na" min="200" max="1000" step="10" value="470" aria-describedby="ratio-note"></div><output class="cap tnum" id="na-out" for="na">470 mg</output></div></div>
+          </div>
+          <p class="small ratio-note" id="ratio-note" aria-live="polite"></p>
+          </div>
+          <div class="pblock mixer">
+            <div class="bottle-box"><div class="bottle-wrap" aria-hidden="true">
+              <div class="bottle-fill"><div class="stack"><i class="s1" style="background:var(--malto)"></i><i class="s2" style="background:var(--fructose)"></i><i class="s3" style="background:var(--citrate)"></i><i class="s4" style="background:var(--malic)"></i></div></div>
+              <svg viewBox="0 0 200 360">
+                <rect x="84" y="8" width="32" height="18" fill="var(--ink)"/>
+                <rect x="72" y="24" width="56" height="28" fill="var(--ink)"/>
+                <path d="M38 92 Q38 70 60 66 L140 66 Q162 70 162 92 L162 180 Q150 200 150 220 Q150 240 162 260 L162 330 Q162 350 142 350 L58 350 Q38 350 38 330 L38 260 Q50 240 50 220 Q50 200 38 180 Z" fill="none" stroke="var(--ink)" stroke-width="1.6"/>
+              </svg>
+            </div></div>
+            <ol class="recipe tnum">
+              <li data-i="1"><svg viewBox="0 0 40 40" style="--s:var(--malto-deep)"><use href="#sh-sq"/></svg><span>Maltodextrin</span><span class="amt" data-amt="malto">42 g</span></li>
+              <li data-i="2"><svg viewBox="0 0 40 40" style="--s:var(--fructose-deep)"><use href="#sh-tri"/></svg><span>Fructose</span><span class="amt" data-amt="fructose">20 g</span><span class="why small soft">Not needed at this amount</span></li>
+              <li data-i="3"><svg viewBox="0 0 40 40" style="--s:var(--citrate-deep)"><use href="#sh-circ"/></svg><span>Sodium Citrate</span><span class="amt" data-amt="citrate">2.0 g</span></li>
+              <li data-i="4"><svg viewBox="0 0 40 40" style="--s:var(--malic-deep)"><use href="#sh-half"/></svg><span>Malic Acid</span><span class="amt" data-amt="malic">0.5 g</span></li>
+            </ol>
+          </div>
+          <div class="pblock totals tnum">
+            <div><b id="tot-carbs">≈ 60 g</b><span class="cap">Carbs</span></div>
+            <div><b id="tot-na">≈ 470 mg</b><span class="cap">Sodium<sup>III</sup></span></div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="cell c6 rows-cell">
+        <article class="ing" data-i="1">
+          <div class="ing-top"><span>01</span><svg viewBox="0 0 40 40" style="--s:var(--malto-deep)" aria-hidden="true"><use href="#sh-sq"/></svg></div>
+          <span class="tag-o">main fuel</span>
+          <h3 class="t-heading">Maltodextrin</h3>
+          <p>Your main carbohydrate, made of glucose. It’s the base of every bottle. On its own, your body can use up to about 60 g of it an hour.<sup>I</sup></p>
+        </article>
+        <article class="ing" data-i="2">
+          <div class="ing-top"><span>02</span><svg viewBox="0 0 40 40" style="--s:var(--fructose-deep)" aria-hidden="true"><use href="#sh-tri"/></svg></div>
+          <span class="tag-o">second fuel</span>
+          <h3 class="t-heading">Fructose</h3>
+          <p>A different sugar that takes a different route into your body. Paired with maltodextrin, it lets you go past 60 g an hour.<sup>I</sup></p>
+        </article>
+        <article class="ing" data-i="3">
+          <div class="ing-top"><span>03</span><svg viewBox="0 0 40 40" style="--s:var(--citrate-deep)" aria-hidden="true"><use href="#sh-circ"/></svg></div>
+          <span class="tag-o">salt electrolytes</span>
+          <h3 class="t-heading">Sodium Citrate</h3>
+          <p>Adds sodium, the main mineral you lose in sweat, with a milder taste than table salt.</p>
+        </article>
+        <article class="ing" data-i="4">
+          <div class="ing-top"><span>04</span><svg viewBox="0 0 40 40" style="--s:var(--malic-deep)" aria-hidden="true"><use href="#sh-half"/></svg></div>
+          <span class="tag-o">taste</span>
+          <h3 class="t-heading">Malic Acid</h3>
+          <p>A little tartness that cuts the sweetness, so a strong bottle stays easy to drink.</p>
+        </article>
+        <div class="together" data-i="5">
+          <p class="cap b">Together</p>
+          <h3 class="t-heading" id="together-h">That’s your bottle for a 2–3 h ride.</h3>
+          <p class="steps cap"><span>01 Scoop</span><span>02 Add water</span><span>03 Shake</span></p>
+          <p>New to fuelling? Start with half, and let the coach build you up from there.</p>
+          <p class="small soft">An example based on published guidance,<sup>I</sup> one 750 ml bottle an hour. Long-standing guidance puts sodium at about 0.5–0.7 g per litre, or 375–525 mg a bottle;<sup>IV</sup> heavy or salty sweaters may need more, and the coach works out your number from your sweat. Your own mix depends on you and your ride.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row value">
+      <div class="cell c4"><p class="cap">The price</p><div><span class="tag-o">prices announced at launch</span><h3 class="t-heading">Fuel every ride, affordably.</h3></div></div>
+      <div class="cell c8">
+        <p class="t-sub">We sell the ingredients themselves, in bulk bags with plain packaging. That keeps fuel affordable enough for every training ride, not just race day.</p>
+      </div>
+    </div>
+
+    <div class="row pidx-row">
+      <div class="cell c6 bone pidx-key">
+        <p class="cap b">Price per 90 g of carbs</p>
+        <p class="t-sub">What an hour of fuel on a long ride costs today.</p>
+        <p class="small soft">CAD, before tax and shipping. Each brand’s lowest-cost drink mix sold in Canada, at shelf prices checked on 26&nbsp;October&nbsp;2026. MixRight’s price comes at launch.</p>
+      </div>
+      <div class="cell c6 pidx" id="pidx">
+        <div class="pi pi-us" style="--i:0"><span class="pi-name">MixRight</span><span class="pi-bar" aria-hidden="true"><i class="pi-hatch"></i></span><span class="pi-val">At launch</span></div>
+        <button type="button" class="pi pi-avg" aria-expanded="true" aria-controls="pi-list" style="--i:0"><span class="pi-name"><span class="chev" aria-hidden="true"></span>Branded average<span class="pi-prod">6 drink mixes</span></span><span class="pi-bar"><i style="width:78.9%"></i></span><span class="pi-val">$6.12</span></button>
+        <div class="pi-list" id="pi-list">
+            <div class="pi" style="--i:0"><span class="pi-name">Skratch Labs<span class="pi-prod">Super High-Carb</span></span><span class="pi-bar"><i style="width:100.0%"></i></span><span class="pi-val">$7.76</span></div>
+            <div class="pi" style="--i:1"><span class="pi-name">Precision Fuel &amp; Hydration<span class="pi-prod">Carb &amp; Electrolyte Drink Mix</span></span><span class="pi-bar"><i style="width:92.8%"></i></span><span class="pi-val">$7.20</span></div>
+            <div class="pi" style="--i:2"><span class="pi-name">Neversecond<span class="pi-prod">C90</span></span><span class="pi-bar"><i style="width:88.7%"></i></span><span class="pi-val">$6.88</span></div>
+            <div class="pi" style="--i:3"><span class="pi-name">Maurten<span class="pi-prod">Drink Mix 320</span></span><span class="pi-bar"><i style="width:73.6%"></i></span><span class="pi-val">$5.71</span></div>
+            <div class="pi" style="--i:4"><span class="pi-name">Tailwind<span class="pi-prod">Endurance Fuel</span></span><span class="pi-bar"><i style="width:60.3%"></i></span><span class="pi-val">$4.68</span></div>
+            <div class="pi" style="--i:5"><span class="pi-name">Näak<span class="pi-prod">Boost Drink Mix 60</span></span><span class="pi-bar"><i style="width:58.0%"></i></span><span class="pi-val">$4.50</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 The coach -->
+  <section class="sec coach" id="coach" aria-labelledby="h-coach">
+    <div class="row head">
+      <div class="cell c4"><span class="tag-o">app · in development</span><p class="te-name">The coach<sup>03</sup></p></div>
+      <div class="cell c8 step">
+        <h2 class="step-a" id="h-coach">Your mix, worked out for you.</h2>
+        <p class="step-b">Every rider burns, sweats and digests differently.</p>
+      </div>
+    </div>
+    <div class="moods" role="group" aria-label="Three training days">
+      <figure class="mood">
+        <img class="mood-img" src="images/coach-1.webp" alt="A rider on a teal bike, blurred with speed, on a path through a green forest" style="object-position:50% 40%">
+        <figcaption class="stamp t-sub tnum"><span>Tue 06:12</span><span>2 h 40</span><span>70 g/h</span><span>470 mg</span><span class="wx"><svg aria-hidden="true"><use href="#wx-rain"/></svg><span class="vh">Rain, </span>9&nbsp;°C</span></figcaption>
+      </figure>
+      <figure class="mood">
+        <img class="mood-img" src="images/coach-2.webp?v=2" alt="A rider leaning hard through a sunny corner, blurred with speed, the bike’s shadow on the road" style="object-position:50% 12%">
+        <figcaption class="stamp t-sub tnum"><span>Thu 17:45</span><span>1 h 30</span><span>30 g/h</span><span>700 mg</span><span class="wx"><svg aria-hidden="true"><use href="#wx-sun"/></svg><span class="vh">Sun, </span>31&nbsp;°C</span></figcaption>
+      </figure>
+      <figure class="mood">
+        <img class="mood-img" src="images/coach-3.webp" alt="Black and white: a bike's wheels and pedal blurred with speed, its shadow on the road" style="object-position:50% 50%">
+        <figcaption class="stamp t-sub tnum"><span>Sat 07:00</span><span>4 h 30</span><span>90 g/h</span><span>520 mg</span><span class="wx"><svg aria-hidden="true"><use href="#wx-cloud"/></svg><span class="vh">Cloud, </span>14&nbsp;°C</span></figcaption>
+      </figure>
+    </div>
+    <ol class="row">
+      <li class="cell c4 step-cell"><span class="cap">01</span><h3 class="t-sub">Tell it your ride</h3><p>How long, how hard, the weather, and how salty you sweat.</p></li>
+      <li class="cell c4 step-cell"><span class="cap">02</span><h3 class="t-sub">Get your grams</h3><p>Exactly what to scoop into each bottle, and how many bottles an hour.</p></li>
+      <li class="cell c4 step-cell"><span class="cap">03</span><h3 class="t-sub">Build up to race day</h3><p>A plan that raises your intake session by session, from your first bottle to race day. Plus a reminder before your bag runs out.</p></li>
+    </ol>
+  </section>
+
+  <!-- The number -->
+  <section class="sec" aria-label="Up to 90 grams an hour">
+    <div class="big-num"><p class="tnum"><span data-fit="wide">Up to 90 g<sup class="unit">per hour</sup></span></p></div>
+    <div class="row num-notes">
+      <div class="cell c4"><p class="cap b">An hour</p><p>The top of the guidance, for rides over 2.5 h.<sup>I</sup></p></div>
+      <div class="cell c4"><p class="cap b">Two sugars</p><p>Past 60 g an hour, guidance pairs glucose with fructose.<sup>I</sup></p></div>
+      <div class="cell c4"><p class="cap b">Built up</p><p>Reached session by session with the coach, not guessed on race day.</p></div>
+    </div>
+  </section>
+
+  <!-- 04 Clubs -->
+  <section class="sec clubs" id="clubs" aria-labelledby="h-clubs">
+    <div class="row head">
+      <div class="cell c4"><p class="te-name">Clubs<sup>04</sup></p></div>
+      <div class="cell c8 step">
+        <h2 class="step-a" id="h-clubs">Do you have a club?</h2>
+        <p class="step-b">Coaches, teams and club organisers: tell us about your athletes, and we’ll be in touch about club orders before launch.</p>
+        <a class="ul more" href="#clubs-page">Register your club →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 Early access -->
+  <section class="sec" id="join" aria-labelledby="h-join">
+    <div class="row head">
+      <div class="cell c4"><p class="te-name">Early access<sup>05</sup></p></div>
+      <div class="cell c8 join">
+        <div class="step">
+          <h2 class="step-a" id="h-join">Be first to mix it.</h2>
+          <p class="step-b">Join the waitlist and you’ll be first to order when we launch, with fuelling tips until then.</p>
+        </div>
+
+        <!-- 1. the email -->
+        <div class="join-pane" data-pane="email">
+          <form id="join-form">
+            <div class="email-row">
+              <label><span class="vh">Email address</span><input type="email" name="email" placeholder="Email address" autocomplete="email" required></label>
+              <button class="btn" type="submit">Get early access</button>
+            </div>
+            <div class="join-fine">
+              <label class="consent small">
+                <input type="checkbox" name="consent" required>
+                <span>Yes, email me about MixRight’s launch and fuelling tips. Sent by Portage Nutrition, [mailing address]. Unsubscribe at any time.</span>
+              </label>
+              <p class="small soft">We’ll never sell your email. <a href="#privacy">Privacy policy</a></p>
+            </div>
+          </form>
+        </div>
+
+        <!-- 2. five optional questions, in place -->
+        <div class="join-pane survey" data-pane="survey" hidden>
+          <div class="survey-head">
+            <p class="t-sub" tabindex="-1">You’re on the list.</p>
+            <p class="soft">Check your inbox to confirm your email. Then, if you have 30 seconds, help us build it right. Every question is optional.</p>
+          </div>
+          <div class="qs">
+            <div class="q" data-q="sport" data-multi><p class="cap soft">01 / 05</p><p class="q-t" id="q-sport">What do you ride or run?</p><p class="small soft q-hint">Choose all that apply.</p>
+              <div class="seg" role="group" aria-labelledby="q-sport"><button type="button" aria-pressed="false">Road cycling</button><button type="button" aria-pressed="false">Gravel</button><button type="button" aria-pressed="false">Mountain bike</button><button type="button" aria-pressed="false">Indoor cycling</button><button type="button" aria-pressed="false">Running</button><button type="button" aria-pressed="false">Trail or ultra running</button><button type="button" aria-pressed="false">Triathlon</button><button type="button" aria-pressed="false">Swimming</button><button type="button" aria-pressed="false">Cross-country skiing</button><button type="button" aria-pressed="false">Hiking</button><button type="button" aria-pressed="false">Other</button></div></div>
+            <div class="q" data-q="hours"><p class="cap soft">02 / 05</p><p class="q-t" id="q-hours">How many hours a week?</p>
+              <div class="seg" role="group" aria-labelledby="q-hours"><button type="button" aria-pressed="false">Under 4</button><button type="button" aria-pressed="false">4–8</button><button type="button" aria-pressed="false">8–12</button><button type="button" aria-pressed="false">12 or more</button></div></div>
+            <div class="q" data-q="fuel" data-multi><p class="cap soft">03 / 05</p><p class="q-t" id="q-fuel">What do you fuel with now?</p><p class="small soft q-hint">Choose all that apply.</p>
+              <div class="seg" role="group" aria-labelledby="q-fuel"><button type="button" aria-pressed="false">I mix my own from bulk ingredients</button><button type="button" aria-pressed="false">A powder drink mix</button><button type="button" aria-pressed="false">Gels</button><button type="button" aria-pressed="false">Chews or bars</button><button type="button" aria-pressed="false">Just food</button><button type="button" aria-pressed="false">Just water</button><button type="button" aria-pressed="false">Nothing yet</button></div></div>
+            <div class="q" data-q="problem" data-multi><p class="cap soft">04 / 05</p><p class="q-t" id="q-problem">What gets in the way of fuelling well?</p><p class="small soft q-hint">Choose all that apply.</p>
+              <div class="seg" role="group" aria-labelledby="q-problem"><button type="button" aria-pressed="false">Stomach trouble</button><button type="button" aria-pressed="false">Running out of energy late on</button><button type="button" aria-pressed="false">Cramping</button><button type="button" aria-pressed="false">Cost</button><button type="button" aria-pressed="false">Not sure how much to take</button><button type="button" aria-pressed="false">Not sure what’s in it</button><button type="button" aria-pressed="false">Taste gets old</button><button type="button" aria-pressed="false">Too much hassle to prepare</button><button type="button" aria-pressed="false">No problem</button></div></div>
+            <div class="q" data-q="app"><p class="cap soft">05 / 05</p><p class="q-t" id="q-app">Would you use an app that works out your mix?</p>
+              <div class="seg" role="group" aria-labelledby="q-app"><button type="button" aria-pressed="false">Yes</button><button type="button" aria-pressed="false">Maybe</button><button type="button" aria-pressed="false">Not for me</button></div></div>
+            <div class="survey-actions">
+              <button class="btn" type="button" id="qs-send">Send</button>
+              <button class="linkbtn" type="button" id="qs-skip">Skip for now</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. done -->
+        <div class="join-pane done" data-pane="done" hidden aria-live="polite">
+          <p class="t-sub" id="done-h" tabindex="-1">Thank you. That helps us build it right.</p>
+          <p class="soft">We’ll email you before we launch.</p>
+          <div class="done-share">
+            <p>Know someone who fuels on Tuesdays?</p>
+            <button class="btn btn-line" type="button" id="copy-link"><span>Copy link</span><span class="arr" aria-hidden="true">→</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row head faq">
+      <div class="cell c4"><h3 class="te-name">Questions<sup>06</sup></h3></div>
+      <div class="cell c8 faq-list">
+        <details open><summary>When do you launch?<span aria-hidden="true"></span></summary><p>We’ll set a date once production is confirmed. Waitlist members hear first.</p></details>
+        <details><summary>Where do you ship?<span aria-hidden="true"></span></summary><p>We’re starting in Canada.</p></details>
+        <details><summary>What’s in each bag?<span aria-hidden="true"></span></summary><p>One ingredient. The bag names it in English and French, with the Nutrition Facts.</p></details>
+        <details><summary>Do I need the app?<span aria-hidden="true"></span></summary><p>No. Every bag has a first-bottle recipe. The app works out your own mix and builds you up from there.</p></details>
+        <details><summary>Who’s behind MixRight?<span aria-hidden="true"></span></summary><p>Portage Nutrition, a small team in Vancouver, BC.</p></details>
+        <details><summary>Is it food-grade?<span aria-hidden="true"></span></summary><p>Yes. We only buy food-grade ingredients (FCC or USP grade) from established suppliers.</p></details>
+      </div>
+    </div>
+  </section>
+  <!-- Banana maths: a cheeky aside, last before the footer -->
+  <section class="sec bn" aria-labelledby="h-bn">
+    <div class="row head">
+      <div class="cell c4"><span class="tag-o">a quick sum</span><h2 class="te-name" id="h-bn">Banana maths</h2></div>
+      <div class="cell c8">
+        <p class="bn-big tnum">10 bananas</p>
+        <div class="bananas" role="img" aria-label="Ten bananas: three fit in jersey pockets, seven don’t"><span class="pockets"><span class="pocket"><svg aria-hidden="true"><use href="#banana"/></svg></span><span class="pocket"><svg aria-hidden="true"><use href="#banana"/></svg></span><span class="pocket"><svg aria-hidden="true"><use href="#banana"/></svg></span></span><svg aria-hidden="true"><use href="#banana"/></svg><svg aria-hidden="true"><use href="#banana"/></svg><svg aria-hidden="true"><use href="#banana"/></svg><svg aria-hidden="true"><use href="#banana"/></svg><svg aria-hidden="true"><use href="#banana"/></svg><svg aria-hidden="true"><use href="#banana"/></svg><svg aria-hidden="true"><use href="#banana"/></svg></div>
+        <p class="cap bn-note">3 pockets · 7 bananas to spare</p>
+        <p class="bn-line">A 3-hour ride at 90 g an hour.<sup>I</sup> Your jersey has three pockets.</p>
+        <div class="bn-rows tnum">
+          <div class="bn-row"><span>Plain water</span><span>0 g carbs, almost no sodium</span></div>
+          <div class="bn-row"><span>10 bananas</span><span>270 g carbs, about 12 mg sodium,<sup>VII</sup> and a lot of peeling</span></div>
+        </div>
+        <div class="bn-end">
+          <p>Bananas are great. But that’s a LOT of bananas.</p>
+          <a class="btn btn-line" href="#join"><span>Get early access</span><span class="arr" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="row">
+    <div class="cell c6 foot-brand">
+      <span class="wm"><span class="wm-a">Mix</span><span class="wm-b">Right</span></span>
+      <p class="small">Sports fuel ingredients in bulk, and a coach that works out your exact mix. By Portage Nutrition, Vancouver, BC.</p>
+    </div>
+    <div class="cell c2 foot-col cap"><h3 class="cap">Contact</h3><ul><li><a href="#mail">hello@[domain]</a></li><li><a href="#ig">Instagram</a></li><li><a href="#strava">Strava club</a></li></ul></div>
+    <div class="cell c2 foot-col cap"><h3 class="cap">Company</h3><ul><li><a href="#clubs-page">Clubs</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#join">Early access</a></li></ul></div>
+    <div class="cell c2 foot-col cap"><h3 class="cap">Language</h3><ul><li><a href="#en" aria-current="true">English</a></li><li><a href="#fr" lang="fr">Français</a></li></ul></div>
+  </div>
+  <div class="row">
+    <div class="cell c6 src small soft sources">
+      <p>I. Jeukendrup, A. (2014). A step towards personalized sports nutrition: carbohydrate intake during exercise. Sports Medicine 44 (Suppl 1): S25–S33.</p>
+      <p>II. King &amp; Hall (2022), a survey of indoor riders: 86% were below the guidelines.</p>
+      <p>III. Trisodium citrate dihydrate is about 23.5% sodium, so 2 g gives about 470 mg.</p>
+    </div>
+    <div class="cell c6 src small soft sources">
+      <p>IV. American College of Sports Medicine (1996). Position stand: Exercise and fluid replacement. Medicine &amp; Science in Sports &amp; Exercise 28(1). About 0.5–0.7 g of sodium per litre for exercise over an hour.</p>
+      <p>V. Podlogar, T. et al. (2022). Increased exogenous but unaltered endogenous carbohydrate oxidation with combined fructose-maltodextrin ingested at 120 g/h versus 90 g/h at different ratios. European Journal of Applied Physiology.</p>
+      <p>VI. Jeukendrup, A. (MySportScience): The optimal ratio of carbohydrates. An expert view that 1:1 is likely better around 120 g/h; not yet tested head to head.</p>
+      <p>VII. USDA FoodData Central: Bananas, raw (FDC 173944). A medium banana (118 g) has about 27 g of carbohydrate and 1 mg of sodium.</p>
+    </div>
+  </div>
+  <div class="row legal">
+    <p class="cell c6 cap">© 2026 Portage Nutrition · Vancouver, BC · Banana icon by loading.io (CC BY)</p>
+    <p class="cell c6 cap">Prices announced at launch · Shipping in Canada first</p>
+  </div>
+  <div class="marquee" aria-hidden="true"><div class="marquee-track"><span>Mix it right.</span><span>From Tuesday to race day.</span><span>Mix it right.</span><span>From Tuesday to race day.</span><span>Mix it right.</span><span>From Tuesday to race day.</span><span>Mix it right.</span><span>From Tuesday to race day.</span></div></div>
+</footer>
+
+<script>
+(function(){
+  var html=document.documentElement, qs=new URLSearchParams(location.search);
+  html.classList.add('js'); document.body.classList.remove('no-js');
+
+
+  // Ride picker: one bottle (750 ml) an hour, from published guidance
+  var RIDES={
+    '1-2':{label:'1–2 h',prose:'a 1–2 h ride',carbs:30,citrate:2,malic:0.5},
+    '2-3':{label:'2–3 h',prose:'a 2–3 h ride',carbs:60,citrate:2,malic:0.5},
+    '3+': {label:'3 h +',prose:'a ride of 3 h or more',carbs:90,citrate:2,malic:0.5}
+  };
+  // Glucose : fructose as 1 : r. 2:1 is the standard. Maltodextrin is about 95% carbohydrate.
+  var q0=qs.get('ratio'), ratio=(['0','0.5','0.8','1'].indexOf(q0)>-1)?q0:'0.5', blocked=false;
+  var na=Number(qs.get('na'))||470; if(na<200||na>1000)na=470;
+  document.getElementById('na').value=na;
+  function mix(r){var c=r.carbs, q=Number(ratio);
+    if(q===0)return {malto:Math.round(c/0.95),fructose:0};
+    var g=c/(1+q);return {malto:Math.round(g/0.95),fructose:Math.round(c-g)};}
+  var NOTES={'0':'Maltodextrin alone works up to about 60 g an hour. [I]',
+    '0.5':'2:1 is our standard, the classic glucose-to-fructose ratio.',
+    '0.8':'1:0.8 comes from newer research at 90 g an hour and above. [V]',
+    '1':'1:1 is suggested for very high intakes, around 120 g an hour. It hasn’t been tested head to head yet. [VI]'};
+  function note(r){
+    if(blocked)return 'Above about 60 g an hour, fructose comes in, so malto only is off.';
+    if(na>525)return 'Above general guidance: for heavy or salty sweaters. The coach works out your number from your sweat.';
+    if(na<375)return 'Below general guidance for rides over an hour. [IV]';
+    return NOTES[ratio];
+  }
+  var ride=qs.get('ride'); if(!RIDES[ride])ride='2-3';
+  var walk=document.getElementById('walk'), rows=walk.querySelectorAll('.rows-cell [data-i]'), items=walk.querySelectorAll('.recipe li');
+  var bars=[walk.querySelector('.s1'),walk.querySelector('.s2'),walk.querySelector('.s3'),walk.querySelector('.s4')];
+  var desktop=window.matchMedia('(min-width: 900px)'), step=0;
+  function fmt(g){return (g===0?'—':(String(g).replace(/\.0$/,'')+' g'))}
+  function heights(m){var k=2.3;return [m.malto*k,m.fructose*k,Math.max(6,(na/235)*5),8]}
+  function draw(){
+    var h=heights(mix(RIDES[ride]));
+    bars.forEach(function(b,n){b.style.height=(step>=n+1?h[n]:0)+'px'});
+    walk.dataset.step=step;
+    items.forEach(function(li){li.classList.toggle('on',Number(li.dataset.i)<=step)});
+  }
+  function setRide(key){
+    ride=key; var r=RIDES[key];
+    if(r.carbs>60&&ratio==='0'){ratio='0.5';blocked=true}
+    var m=mix(r), g=Math.round(na/23.5)/10;
+    document.querySelectorAll('[data-ride]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.ride===key?'true':'false')});
+    document.querySelectorAll('[data-ratio]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.ratio===ratio?'true':'false');b.disabled=(b.dataset.ratio==='0'&&r.carbs>60)});
+    document.querySelectorAll('.g-row[data-tier]').forEach(function(row){row.classList.toggle('is-on',row.dataset.tier===key)});
+    document.getElementById('ride-answer').textContent='Up to '+r.carbs+' g an hour';
+    document.getElementById('together-h').textContent='That’s your bottle for '+r.prose+'.';
+    document.getElementById('tot-carbs').textContent='≈ '+r.carbs+' g';
+    document.getElementById('tot-na').textContent='≈ '+na+' mg';
+    document.getElementById('na-out').textContent=na+' mg';
+    var amts={malto:fmt(m.malto),fructose:fmt(m.fructose),citrate:g.toFixed(1)+' g',malic:fmt(r.malic)};
+    ['malto','fructose','citrate','malic'].forEach(function(k){walk.querySelector('[data-amt="'+k+'"]').textContent=amts[k]});
+    items[1].classList.toggle('zero',m.fructose===0);
+    document.getElementById('ratio-note').textContent=note(r);
+    blocked=false;
+    draw();
+  }
+  document.querySelectorAll('[data-ride]').forEach(function(b){b.addEventListener('click',function(){setRide(b.dataset.ride)})});
+  document.querySelectorAll('[data-ratio]').forEach(function(b){b.addEventListener('click',function(){if(b.disabled)return;ratio=b.dataset.ratio;setRide(ride)})});
+  document.getElementById('na').addEventListener('input',function(e){na=Number(e.target.value);setRide(ride)});
+  function update(){
+    if(!desktop.matches){step=5}else{
+      step=0; var mid=window.innerHeight*0.55;
+      rows.forEach(function(r){if(r.getBoundingClientRect().top<mid)step=Math.max(step,Number(r.dataset.i))});
+    }
+    draw();
+    heroUpdate();
+  }
+  // Giant type runs margin to margin: the hero wordmark at every width, "Up to 90 g" above phone width
+  var wide=window.matchMedia('(min-width: 600px)'), fits=document.querySelectorAll('[data-fit]');
+  function fitType(){
+    var pad=parseFloat(getComputedStyle(html).getPropertyValue('--pad'))||20;
+    fits.forEach(function(el){
+      el.style.fontSize='';
+      if(el.dataset.fit==='wide'&&!wide.matches)return;
+      var host=el.parentElement.closest('.hero-stage,.big-num'), avail=host.clientWidth-2*pad;
+      var fs=parseFloat(getComputedStyle(el).fontSize), w=el.getBoundingClientRect().width;
+      if(w>0){
+        var next=fs*avail/w;
+        // on the pinned stage the wordmark also has to leave room for the line and the button
+        if(heroAnim&&el.dataset.fit==='all')next=Math.min(next,stage.clientHeight*.38);
+        el.style.fontSize=next.toFixed(2)+'px';
+      }
+    });
+  }
+
+  // Hero: one pinned stage, driven by scroll. The headline holds, MixRight rises from below to close the
+  // sentence, then the line and the button come in. Only transform and opacity change.
+  var hero=document.getElementById('top'), stage=hero.querySelector('.hero-stage'), stack=hero.querySelector('.hero-stack'),
+      h1=hero.querySelector('h1'), hwm=hero.querySelector('.giant-wm'), hmsg=hero.querySelector('.hero-line'), hbtn=hero.querySelector('.btn'),
+      heroMq=window.matchMedia('(min-width: 900px) and (prefers-reduced-motion: no-preference)'), heroAnim=false;
+  function heroMode(){
+    heroAnim=heroMq.matches; hero.classList.toggle('hero-anim',heroAnim);
+    if(!heroAnim)[stack,hwm,hmsg,hbtn].forEach(function(el){el.style.transform='';el.style.opacity='';el.style.visibility=''});
+  }
+  function clamp01(x){return Math.min(1,Math.max(0,x))}
+  function seg(p,a,b){var t=clamp01((p-a)/(b-a));return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
+  function heroUpdate(){
+    if(!heroAnim)return;
+    var navH=document.getElementById('nav').offsetHeight, total=hero.offsetHeight-stage.offsetHeight;
+    var p=clamp01((navH-hero.getBoundingClientRect().top)/total);
+    var s=seg(p,.12,.5), m=seg(p,.5,.7), b=seg(p,.62,.8), off=(stack.offsetHeight-h1.offsetHeight)/2;
+    hwm.style.transform='translateY('+((1-s)*stage.offsetHeight).toFixed(1)+'px)';
+    stack.style.transform='translateY('+((1-s)*off).toFixed(1)+'px)';
+    hmsg.style.opacity=m; hmsg.style.transform='translateY('+((1-m)*24).toFixed(1)+'px)';
+    hbtn.style.opacity=b; hbtn.style.visibility=b>0?'visible':'hidden';
+  }
+
+  // Price index: the branded average opens to every brand. The bars draw to scale the first time they're seen,
+  // and the list's bars draw again each time it opens. With no script, everything shows and nothing moves.
+  var pidx=document.getElementById('pidx');
+  if(pidx){
+    var piAvg=pidx.querySelector('.pi-avg'), piList=document.getElementById('pi-list');
+    piAvg.setAttribute('aria-expanded','false'); piList.hidden=true;
+    function drawIn(el){el.classList.remove('drawn');void el.offsetWidth;requestAnimationFrame(function(){el.classList.add('drawn')})}
+    piAvg.addEventListener('click',function(){
+      var open=piAvg.getAttribute('aria-expanded')!=='true';
+      piAvg.setAttribute('aria-expanded',open?'true':'false'); piList.hidden=!open;
+      if(open)drawIn(piList);
+    });
+    if('IntersectionObserver' in window){
+      var piUs=pidx.querySelector('.pi-us');
+      new IntersectionObserver(function(es,io){if(es[0].isIntersecting){io.disconnect();drawIn(piUs);drawIn(piAvg)}},{threshold:.5}).observe(piAvg);
+    }else{piAvg.classList.add('drawn');pidx.querySelector('.pi-us').classList.add('drawn')}
+    if(qs.get('pi')==='open')piAvg.click(); // mock-up: ?pi=open shows the list opened
+  }
+
+  var ticking=false;
+  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(function(){update();ticking=false})}},{passive:true});
+  window.addEventListener('resize',function(){heroMode();fitType();update()});
+  setRide(ride); heroMode(); fitType(); update();
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){fitType();update()});
+
+  // Early access: the email first, then five optional questions, in place. Not wired to a backend in the mock-up.
+  var panes={}; document.querySelectorAll('[data-pane]').forEach(function(p){panes[p.dataset.pane]=p});
+  function showPane(name){
+    Object.keys(panes).forEach(function(k){panes[k].hidden=(k!==name)});
+    var f=panes[name].querySelector('[tabindex="-1"]'); if(f)f.focus({preventScroll:true});
+    panes[name].scrollIntoView({block:'nearest'});
+  }
+  var answers={};
+  document.querySelectorAll('.qs .q').forEach(function(q){
+    var multi=q.hasAttribute('data-multi');
+    q.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){
+      var on=b.getAttribute('aria-pressed')==='true';
+      if(!multi)q.querySelectorAll('button').forEach(function(o){o.setAttribute('aria-pressed','false')});
+      b.setAttribute('aria-pressed',on?'false':'true');
+      var picked=Array.prototype.filter.call(q.querySelectorAll('button'),function(o){return o.getAttribute('aria-pressed')==='true'}).map(function(o){return o.textContent});
+      if(picked.length){answers[q.dataset.q]=multi?picked:picked[0]}else{delete answers[q.dataset.q]}
+    })});
+  });
+  document.getElementById('join-form').addEventListener('submit',function(e){e.preventDefault();showPane('survey')});
+  function finish(){
+    document.getElementById('done-h').textContent=Object.keys(answers).length?'Thank you. That helps us build it right.':'You’re all set.';
+    showPane('done');
+  }
+  document.getElementById('qs-send').onclick=finish;
+  document.getElementById('qs-skip').onclick=finish;
+  document.getElementById('copy-link').onclick=function(){
+    var label=this.querySelector('span');
+    try{navigator.clipboard.writeText(location.href.split('#')[0]).then(function(){label.textContent='Copied'},function(){})}catch(e){}
+  };
+
+})();
+</script>
+</body>
+</html>
